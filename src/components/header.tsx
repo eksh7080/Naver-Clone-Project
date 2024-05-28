@@ -20,11 +20,11 @@ const HeaderContainer = styled.header`
         align-items: center;
         height: 100%;
         li {
-          cursor: pointer;
           padding: 2rem;
           &.active {
             background-color: #00c855;
             a {
+              cursor: pointer;
               color: white;
             }
           }
@@ -39,6 +39,16 @@ const HeaderContainer = styled.header`
         li {
           font-size: 2.4rem;
           font-weight: 900;
+          div {
+            width: 27rem;
+            border: 0.1rem solid#e0e0e0;
+            input[type="text"] {
+              width: 100%;
+              height: 100%;
+              text-indent: 1rem;
+              padding: 1rem 0;
+            }
+          }
           a {
             span {
               display: inline-block;
@@ -65,10 +75,11 @@ const HeaderContainer = styled.header`
 
 const Header = () => {
   const checkActive = usePathname();
+
   const checkFun = (path: string) => {
-    console.log(path, " nav nav nav ", checkActive);
     return path === checkActive ? true : false;
   };
+
   const navigationList = [
     { href: "/comic", name: "홈" },
     { href: "/webtoon", name: "웹툰" },
@@ -85,6 +96,14 @@ const Header = () => {
               <Link href="/comic">
                 <span>NAVER</span> 웹툰
               </Link>
+            </li>
+            <li>
+              <div className="searchBox">
+                <input
+                  type="text"
+                  placeholder="제목/작가로 검색할 수 있습니다."
+                />
+              </div>
             </li>
           </ul>
         </nav>
