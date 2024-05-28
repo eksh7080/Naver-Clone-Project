@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import StyledComponentsRegistry from "src/lib/registry";
+import StyledComponentsRegistry from "lib/registry";
+import GlobalStyles from "styles/GlobalStyle";
 
 export const metadata: Metadata = {
   title: "네이버 클론 프로젝트",
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <GlobalStyles />
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
     </html>

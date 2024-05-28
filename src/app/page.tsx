@@ -1,3 +1,9 @@
+import Link from "next/link";
 export default function Home() {
-  return <h1>hehe</h1>;
+  return (
+    <>
+      <Link href="/comic">웹툰 이동</Link>
+      <h1>홈페이지</h1>
+    </>
+  );
 }

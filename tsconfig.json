@@ -1,44 +1,36 @@
 {
-	"compilerOptions": {
-		"lib": ["dom", "dom.iterable", "esnext"], // TypeScript 컴파일러가 코드를 컴파일할 때 사용할 라이브러리를 지정
-		"allowJs": true, // JavaScript 파일도 컴파일할 수 있도록 허용
-		"skipLibCheck": true, // 외부 라이브러리의 타입 검사를 건너뛸지 여부
-		"strict": true, // 엄격한 타입 검사를 활성화하는 설정으로, 타입 오류를 최대한 발견하기 위해 사용
-		"noEmit": true, // TypeScript 컴파일 결과물을 생성하지 않도록 설정. 대신 타입 검사만 수행
-		"esModuleInterop": true, //CommonJS와 ES 모듈 간 상호 운용성을 향상시키기 위해 필요한 설정
-		"module": "esnext", // 코드를 컴파일할 때 사용할 모듈 시스템을 지정. 이 경우에는 ES 모듈 시스템을 사용
-		"moduleResolution": "bundler", // 모듈 해결 전략을 설정. 이 설정은 빌드 시 모듈을 어떻게 찾을지 결정
-		"resolveJsonModule": true, // JSON 파일을 모듈처럼 가져올 수 있도록 지원하는 설정
-		"isolatedModules": true, // 파일 간의 연결 없이 각 파일을 독립적인 모듈로 컴파일하는 설정
-		"jsx": "preserve", // JSX 문법을 어떻게 처리할지 설정. "preserve"는 JSX 코드를 변환하지 않고 그대로 유지
-		"incremental": true, // 증분 빌드를 사용하여 더 빠른 컴파일 속도를 제공하는 설정
-		"plugins": [
-			// TypeScript 컴파일러 플러그인을 사용하는 설정. 여기서는 Next.js 플러그인을 사용.
-			{
-				"name": "next"
-			}
-		],
-		// path 설정
-		"baseUrl": ".",
-		"paths": {
-			"@images/*": ["public/images/*"],
-			"@icons/*": ["public/icons/*"],
-			"@svg/*": ["public/svg/*"],
-			"@videos/*": ["public/videos/*"],
-			"@fonts/*": ["public/static/fonts/*"],
-			"@components/*": ["src/app/(front)/_components/*"],
-			"@hooks/*": ["src/clients/hooks/*"],
-			"@loaders/*": ["src/clients/loaders/*"],
-			"@providers/*": ["src/clients/providers/*"],
-			"@queries/*": ["src/clients/queries/*"],
-			"@services/*": ["src/clients/services/*"],
-			"@stores/*": ["src/clients/stores/*"],
-			"@styles/*": ["src/globals/styles/*"],
-			"@types/*": ["src/globals/types/*"],
-			"@data/*": ["src/utils/data/*"],
-			"@lib/*": ["src/utils/lib/*"]
-		}
-	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.d.ts", "**/*.tsx", ".next/types/**/*.ts"], // 타입확인
-	"exclude": ["node_modules"] // 볼필요없음
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"], // TypeScript 컴파일러가 코드를 컴파일할 때 사용할 라이브러리를 지정
+    "allowJs": true, // JavaScript 파일도 컴파일할 수 있도록 허용
+    "skipLibCheck": true, // 외부 라이브러리의 타입 검사를 건너뛸지 여부
+    "strict": true, // 엄격한 타입 검사를 활성화하는 설정으로, 타입 오류를 최대한 발견하기 위해 사용
+    "noEmit": true, // TypeScript 컴파일 결과물을 생성하지 않도록 설정. 대신 타입 검사만 수행
+    "esModuleInterop": true, //CommonJS와 ES 모듈 간 상호 운용성을 향상시키기 위해 필요한 설정
+    "module": "esnext", // 코드를 컴파일할 때 사용할 모듈 시스템을 지정. 이 경우에는 ES 모듈 시스템을 사용
+    "moduleResolution": "bundler", // 모듈 해결 전략을 설정. 이 설정은 빌드 시 모듈을 어떻게 찾을지 결정
+    "resolveJsonModule": true, // JSON 파일을 모듈처럼 가져올 수 있도록 지원하는 설정
+    "isolatedModules": true, // 파일 간의 연결 없이 각 파일을 독립적인 모듈로 컴파일하는 설정
+    "jsx": "preserve", // JSX 문법을 어떻게 처리할지 설정. "preserve"는 JSX 코드를 변환하지 않고 그대로 유지
+    "incremental": true, // 증분 빌드를 사용하여 더 빠른 컴파일 속도를 제공하는 설정
+    "plugins": [
+      // TypeScript 컴파일러 플러그인을 사용하는 설정. 여기서는 Next.js 플러그인을 사용.
+      {
+        "name": "next"
+      }
+    ],
+    // path 설정
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@lib/*": ["src/lib/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ], // 타입확인
+  "exclude": ["node_modules"] // 볼필요없음
 }
