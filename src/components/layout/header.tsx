@@ -9,9 +9,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import GlobalNav from "./nav/GlobalNav";
 import SubNav from "./nav/SubNav";
-import { useUrlPathNameCheck } from "hooks/useUrlPathNameCheck";
 import { navCheck } from "utils/Header";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const HeaderContainer = styled.header`
   max-width: 100%;
@@ -94,12 +93,13 @@ const HeaderContainer = styled.header`
 `;
 
 const Header = () => {
-  const globalNavLi = useRef<HTMLUListElement>(null);
-  console.log(globalNavLi.current?.children, "네브");
+  const [currentNav, setCurrentNav] = useState("");
+  console.log(currentNav, "네브");
+
   return (
     <HeaderContainer>
-      <GlobalNav globalNavLi={globalNavLi} />
-      {navCheck() && <SubNav />}
+      <GlobalNav setCurrentNav={setCurrentNav} />
+      {currentNav !== "/comic" && <SubNav currentNav={currentNav} />}
     </HeaderContainer>
   );
 };

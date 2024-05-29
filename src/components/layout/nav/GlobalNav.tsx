@@ -7,13 +7,13 @@ import Link from "next/link";
 import useUrlPathNameCheck from "hooks/useUrlPathNameCheck";
 import SearchIcon from "components/icon/SearchIcon";
 import { activeCheck } from "utils/Header";
-import { MutableRefObject } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface IProps {
-  globalNavLi: MutableRefObject<HTMLUListElement>;
+  setCurrentNav: Dispatch<SetStateAction<string>>;
 }
 
-const GlobalNav = ({ globalNavLi }: IProps) => {
+const GlobalNav = ({ setCurrentNav }: IProps) => {
   const globalNavigationList = [
     { href: "/comic", name: "홈" },
     { href: "/webtoon", name: "웹툰" },
@@ -47,9 +47,13 @@ const GlobalNav = ({ globalNavLi }: IProps) => {
       </div>
       <div className="bottom">
         <nav>
-          <ul ref={globalNavLi}>
+          <ul>
             {globalNavigationList.map(({ href, name }) => (
-              <li key={name} className={activeCheck(href) ? "active" : ""}>
+              <li
+                key={name}
+                className={activeCheck(href) ? "active" : ""}
+                onClick={() => setCurrentNav(href)}
+              >
                 <Link href={href}>{name}</Link>
               </li>
             ))}
