@@ -4,7 +4,13 @@
 		"es6": true,
 		"node": true
 	},
-	"extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript", "prettier"],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"sourceType": "module",
+		"project": "tsconfig.json",
+		"tsconfigRootDir": "__dirname"
+	},
+	"extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript", "prettier", "@typescript-eslint/parser"],
 	"rules": {
 		// 원하는 규칙 설정
 		"no-console": "error", // 콘솔 사용 확인
@@ -27,11 +33,5 @@
 		"import/no-extraneous-dependencies": "off", // ! 종속성 검사하는 eslint 
 		"react/require-default-props": "off", // 타입 ?: 사용
 		"tailwindcss/classnames-order": "off" // tailwind 삭제
-	},
-	"parser": "@typescript-eslint/parser",
-	"parserOptions": {
-		"sourceType": "module",
-		"project": "tsconfig.json",
-		"tsconfigRootDir": "__dirname"
 	}
 }
