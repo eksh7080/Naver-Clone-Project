@@ -1,10 +1,7 @@
-import Header from "components/header";
-
 const Comic = () => {
   return (
     <>
-      <Header />
-      <h1>여긴 웹툰</h1>
+      <h1>이곳은 웹툰 홈입니다.</h1>
     </>
   );
 };
