@@ -3,14 +3,13 @@
  * 설명: 헤더 공통 컴포넌트
  * 구성요소: GlobalNav.tsx, SubNav.tsx
  */
-
 "use client";
 import styled from "styled-components";
 import Link from "next/link";
 import GlobalNav from "./nav/GlobalNav";
 import SubNav from "./nav/SubNav";
 import { navCheck } from "utils/Header";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const HeaderContainer = styled.header`
   max-width: 100%;
@@ -94,7 +93,6 @@ const HeaderContainer = styled.header`
 
 const Header = () => {
   const [currentNav, setCurrentNav] = useState("");
-  console.log(currentNav, "네브");
 
   return (
     <HeaderContainer>

@@ -4,7 +4,6 @@
  */
 
 import Link from "next/link";
-import useUrlPathNameCheck from "hooks/useUrlPathNameCheck";
 import SearchIcon from "components/icon/SearchIcon";
 import { activeCheck } from "utils/Header";
 import { Dispatch, SetStateAction } from "react";
@@ -27,7 +26,7 @@ const GlobalNav = ({ setCurrentNav }: IProps) => {
         <nav>
           <ul>
             <li>
-              <Link href="/comic">
+              <Link href="/">
                 <span>NAVER</span> 웹툰
               </Link>
             </li>

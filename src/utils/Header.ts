@@ -5,11 +5,13 @@
 
 import { usePathname } from "next/navigation";
 
+// 글로벌 네비게이션 배경 하이라이트 체크 함수
 export const activeCheck = (path: string) => {
   const pathName = usePathname();
   return path === pathName ? true : false;
 };
 
+// 서브 네비게이션 표시 유무 체크 함수
 export const navCheck = () => {
   const pathName = usePathname();
   return pathName !== "/comic" ? true : false;

@@ -1,3 +1,8 @@
+/**
+ * 파일명: /comic/page.tsx
+ * 설명: 웹툰 홈 페이지
+ */
+
 const Comic = () => {
   return (
     <>
