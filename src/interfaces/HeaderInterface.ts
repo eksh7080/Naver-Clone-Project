@@ -3,7 +3,12 @@
  * 설명: 헤더 데이터 인터페이스 명시 스크립트
  */
 
-export interface SubNavListParam {
+export interface HeaderGlobalNavListInterface {
   href: string;
-  list: string[];
+  name: string;
+}
+
+export interface HeaderNavListInterface {
+  href: string;
+  items: string[];
 }

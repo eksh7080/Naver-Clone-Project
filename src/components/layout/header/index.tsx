@@ -10,6 +10,7 @@ import GlobalNav from "./nav/GlobalNav";
 import SubNav from "./nav/SubNav";
 import { navCheck } from "utils/Header";
 import { useEffect, useRef, useState } from "react";
+import { HeaderNavListInterface } from "interfaces/HeaderInterface";
 
 const HeaderContainer = styled.header`
   max-width: 100%;
@@ -27,11 +28,16 @@ const HeaderContainer = styled.header`
         align-items: center;
         height: 100%;
         li {
-          padding: 2rem;
+          cursor: pointer;
+          a {
+            display: inline-block;
+            padding: 2rem;
+            width: 100%;
+            height: 100%;
+          }
           &.active {
             background-color: #00c855;
             a {
-              cursor: pointer;
               color: white;
             }
           }
@@ -92,12 +98,33 @@ const HeaderContainer = styled.header`
 `;
 
 const Header = () => {
-  const [currentNav, setCurrentNav] = useState("");
+  const [changeNavHref, setChangeNavHref] = useState("");
+  const [headerNavList, setHeaderNavList] = useState<HeaderNavListInterface[]>(
+    [],
+  );
+
+  async function getData() {
+    const res = await fetch("http://localhost:3000/api/header", {
+      method: "GET",
+    }).then(result => result.json());
+
+    // const findNavList: HeaderNavListInterface = res.filter(
+    //   item => item.href === changeNavHref,
+    // );
+    // setHeaderNavList(findNavList);
+    // console.log(res, "네브리스트 - 00000", findNavList);
+  }
+
+  useEffect(() => {
+    getData();
+  }, [changeNavHref]);
+
+  console.log(headerNavList, "헤더 네브 릿그트 -==- -00000");
 
   return (
     <HeaderContainer>
-      <GlobalNav setCurrentNav={setCurrentNav} />
-      {currentNav !== "/comic" && <SubNav currentNav={currentNav} />}
+      <GlobalNav setChangeNavHref={setChangeNavHref} />
+      <SubNav changeNavHref={changeNavHref} headerNavList={headerNavList} />
     </HeaderContainer>
   );
 };

@@ -7,18 +7,23 @@ import Link from "next/link";
 import SearchIcon from "components/icon/SearchIcon";
 import { activeCheck } from "utils/Header";
 import { Dispatch, SetStateAction } from "react";
+import { HeaderGlobalNavListInterface } from "interfaces/HeaderInterface";
 
 interface IProps {
-  setCurrentNav: Dispatch<SetStateAction<string>>;
+  setChangeNavHref: Dispatch<SetStateAction<string>>;
 }
 
-const GlobalNav = ({ setCurrentNav }: IProps) => {
-  const globalNavigationList = [
+const GlobalNav = ({ setChangeNavHref }: IProps) => {
+  const globalNavigationList: HeaderGlobalNavListInterface[] = [
     { href: "/comic", name: "홈" },
     { href: "/webtoon", name: "웹툰" },
     { href: "/bestChallenge", name: "베스트도전" },
     { href: "/challenge", name: "도전만화" },
   ];
+
+  const changeNavClick = (href: string) => {
+    setChangeNavHref(href);
+  };
 
   return (
     <>
@@ -51,7 +56,7 @@ const GlobalNav = ({ setCurrentNav }: IProps) => {
               <li
                 key={name}
                 className={activeCheck(href) ? "active" : ""}
-                onClick={() => setCurrentNav(href)}
+                onClick={() => changeNavClick(href)}
               >
                 <Link href={href}>{name}</Link>
               </li>
