@@ -8,16 +8,16 @@ import styled from "styled-components";
 import Link from "next/link";
 import GlobalNav from "./nav/GlobalNav";
 import SubNav from "./nav/SubNav";
-import { navCheck } from "utils/Header";
+import { navCheck } from "@utils/Header";
 import { useEffect, useRef, useState } from "react";
-import { HeaderNavListInterface } from "interfaces/HeaderInterface";
+import { HeaderDynamicNavList } from "@interfaces/HeaderInterface";
 
 const HeaderContainer = styled.header`
   max-width: 100%;
   width: 100%;
 
   /* 위 아래 공통속성 */
-  div:where(.top, .bottom) {
+  div:where(.top, .bottom, .subNav) {
     border-bottom: 0.1rem solid #ebebeb;
     nav {
       max-width: 1240px;
@@ -95,24 +95,38 @@ const HeaderContainer = styled.header`
       }
     }
   }
+
+  .subNav {
+    nav {
+      ul {
+        li {
+          font-size: 1.5rem;
+          font-weight: 600;
+          a {
+          }
+        }
+      }
+    }
+  }
 `;
 
 const Header = () => {
   const [changeNavHref, setChangeNavHref] = useState("");
-  const [headerNavList, setHeaderNavList] = useState<HeaderNavListInterface[]>(
+  const [headerNavList, setHeaderNavList] = useState<HeaderDynamicNavList[]>(
     [],
   );
 
   async function getData() {
-    const res = await fetch("http://localhost:3000/api/header", {
-      method: "GET",
-    }).then(result => result.json());
+    const res: HeaderDynamicNavList[] = await fetch(
+      "http://localhost:3000/api/header",
+      {
+        method: "GET",
+      },
+    ).then(result => result.json());
 
-    // const findNavList: HeaderNavListInterface = res.filter(
-    //   item => item.href === changeNavHref,
-    // );
-    // setHeaderNavList(findNavList);
-    // console.log(res, "네브리스트 - 00000", findNavList);
+    setHeaderNavList([...res]);
+
+    console.log(res, "네브리스트 - 00000");
   }
 
   useEffect(() => {

@@ -61,8 +61,7 @@ const GlobalStyles = createGlobalStyle`
       border-spacing: 0;
     }
 
-    input,
-    select {
+    input {
       border: 0;
     }
 

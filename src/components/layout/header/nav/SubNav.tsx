@@ -3,12 +3,12 @@
  * 설명: 헤더 서브 네비게이션 컴포넌트 (웹툰, 도전만화, 베스트도전)
  */
 
-import { HeaderNavListInterface } from "interfaces/HeaderInterface";
+import { HeaderDynamicNavList } from "@interfaces/HeaderInterface";
 import Link from "next/link";
 
 interface IProps {
   changeNavHref: string;
-  headerNavList: HeaderNavListInterface;
+  headerNavList: HeaderDynamicNavList[];
 }
 
 const SubNav = ({ changeNavHref, headerNavList }: IProps) => {
@@ -17,7 +17,15 @@ const SubNav = ({ changeNavHref, headerNavList }: IProps) => {
   return (
     <div className="subNav">
       <nav>
-        <ul></ul>
+        <ul>
+          {headerNavList
+            .find(item => item.href === changeNavHref)
+            ?.data.map((list, index) => (
+              <li key={index}>
+                <Link href="">{list}</Link>
+              </li>
+            ))}
+        </ul>
       </nav>
     </div>
   );

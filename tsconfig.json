@@ -17,12 +17,15 @@
       { "name": "next" }
     ],
     // path 설정
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
+      "@public/*": ["public/*"],
+      "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
       "@lib/*": ["src/lib/*"],
       "@db/*": ["src/db/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
+      "@interfaces/*": ["src/interfaces/*"]
     }
   },
   "include": [

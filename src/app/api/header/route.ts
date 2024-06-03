@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import SubNavList from "db/SubNavList.json";
+import SubNavList from "@db/SubNavList.json";
 
 export async function GET(req: NextRequest) {
   try {

@@ -4,17 +4,17 @@
  */
 
 import Link from "next/link";
-import SearchIcon from "components/icon/SearchIcon";
-import { activeCheck } from "utils/Header";
+import SearchIcon from "@components/icon/SearchIcon";
+import { activeCheck } from "@utils/Header";
 import { Dispatch, SetStateAction } from "react";
-import { HeaderGlobalNavListInterface } from "interfaces/HeaderInterface";
+import { HeaderGlobalNavList } from "@interfaces/HeaderInterface";
 
 interface IProps {
   setChangeNavHref: Dispatch<SetStateAction<string>>;
 }
 
 const GlobalNav = ({ setChangeNavHref }: IProps) => {
-  const globalNavigationList: HeaderGlobalNavListInterface[] = [
+  const globalNavigationList: HeaderGlobalNavList[] = [
     { href: "/comic", name: "홈" },
     { href: "/webtoon", name: "웹툰" },
     { href: "/bestChallenge", name: "베스트도전" },

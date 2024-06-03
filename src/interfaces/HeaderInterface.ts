@@ -3,12 +3,12 @@
  * 설명: 헤더 데이터 인터페이스 명시 스크립트
  */
 
-export interface HeaderGlobalNavListInterface {
+export interface HeaderGlobalNavList {
   href: string;
   name: string;
 }
 
-export interface HeaderNavListInterface {
+export interface HeaderDynamicNavList {
   href: string;
-  items: string[];
+  data: string[];
 }
