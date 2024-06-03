@@ -13,40 +13,25 @@
 	"extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript", "prettier", "@typescript-eslint/parser"],
 	"rules": {
 		// 원하는 규칙 설정
-		"prettier/prettier": 0,
-		"import/no-anonymous-default-export": "off",
-		"@next/next/no-img-element": "off",
-		"eslint-plugin-import/no-anonymous-default-export": "off",
-		"react/react-in-jsx-scope": "off",
-		"react/prop-types": "off",
-		"prefer-const": "off",
-		"no-param-reassign": ["off", { "props": true, "ignorePropertyModificationsFor": ["state"] }],
-		"@typescript-eslint/explicit-module-boundary-types": "off",
-		"@typescript-eslint/no-explicit-any": "off",
-		"@typescript-eslint/no-non-null-assertion": "off",
-		"@typescript-eslint/ban-ts-comment": "off",
-		"@typescript-eslint/no-empty-function": "off",
-		"@typescript-eslint/no-unused-vars": "off",
-		"react/display-name": "off"
-		// "no-console": "error", // 콘솔 사용 확인
-		// "react/react-in-jsx-scope": "off", // JSX에서 React import를 강제하는 규칙 비활성화.
-		// "no-unused-vars": "off", // 사용되지 않는 변수 확인 규칙 비활성화.
-		// "@typescript-eslint/no-unused-vars": "off", // TypeScript에서 사용되지 않는 변수 확인 규칙 비활성화.
-		// "react/jsx-props-no-spreading": "off", // JSX 속성 전파를 금지하는 규칙 비활성화.
-		// "linebreak-style": "off", // 줄 바꿈 스타일 확인 규칙 비활성화.
-		// "operator-linebreak": ["off"], // 연산자 줄 바꿈 확인 규칙 비활성화.
-		// "import/no-named-as-default": "off", // import에서 as default 사용 확인 규칙 비활성화
-		// "react/jsx-filename-extension": "off", // jsx, tsx 사용 확인
-		// "prefer-template": "off", // 레터럴 문자 뿐 아니라 .concat(test + value) 이런식으로 사용 가능
-		// "no-restricted-syntax": "off" // for문 사용 가능
-		// "import/no-named-as-default-member": "off", // import에서 as default member 사용 확인 규칙 비활성화.
-		// "import/prefer-default-export": "off", // 명명된 export 대신 default export 선호 규칙 비활성화.
-		// "import/no-anonymous-default-export": "off", // 익명 default export 사용 확인 규칙 비활성화.
-		// "react/no-unused-prop-types": "off", // index props로 보내기
-		// "consistent-return": "off", // 화살표 함수에서 값을 반환하지 않을 때 발생합니다.
-		// "react-hooks/exhaustive-deps": "off", // useEffect hooks 2번째 의존배열 데이터 꼭 넣기 제거(무한루프 발생함)
-		// "import/no-extraneous-dependencies": "off", // ! 종속성 검사하는 eslint 
-		// "react/require-default-props": "off", // 타입 ?: 사용
-		// "tailwindcss/classnames-order": "off" // tailwind 삭제
+		"no-console": "error", // 콘솔 사용 확인
+		"react/react-in-jsx-scope": "off", // JSX에서 React import를 강제하는 규칙 비활성화.
+		"no-unused-vars": "off", // 사용되지 않는 변수 확인 규칙 비활성화.
+		"@typescript-eslint/no-unused-vars": "off", // TypeScript에서 사용되지 않는 변수 확인 규칙 비활성화.
+		"react/jsx-props-no-spreading": "off", // JSX 속성 전파를 금지하는 규칙 비활성화.
+		"linebreak-style": "off", // 줄 바꿈 스타일 확인 규칙 비활성화.
+		"operator-linebreak": ["off"], // 연산자 줄 바꿈 확인 규칙 비활성화.
+		"import/no-named-as-default": "off", // import에서 as default 사용 확인 규칙 비활성화
+		"react/jsx-filename-extension": "off", // jsx, tsx 사용 확인
+		"prefer-template": "off", // 레터럴 문자 뿐 아니라 .concat(test + value) 이런식으로 사용 가능
+		"no-restricted-syntax": "off", // for문 사용 가능
+		"import/no-named-as-default-member": "off", // import에서 as default member 사용 확인 규칙 비활성화.
+		"import/prefer-default-export": "off", // 명명된 export 대신 default export 선호 규칙 비활성화.
+		"import/no-anonymous-default-export": "off", // 익명 default export 사용 확인 규칙 비활성화.
+		"react/no-unused-prop-types": "off", // index props로 보내기
+		"consistent-return": "off", // 화살표 함수에서 값을 반환하지 않을 때 발생합니다.
+		"react-hooks/exhaustive-deps": "off", // useEffect hooks 2번째 의존배열 데이터 꼭 넣기 제거(무한루프 발생함)
+		"import/no-extraneous-dependencies": "off", // ! 종속성 검사하는 eslint 
+		"react/require-default-props": "off", // 타입 ?: 사용
+		"tailwindcss/classnames-order": "off" // tailwind 삭제
 	}
 }

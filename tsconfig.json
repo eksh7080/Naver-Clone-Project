@@ -25,7 +25,8 @@
       "@lib/*": ["src/lib/*"],
       "@db/*": ["src/db/*"],
       "@hooks/*": ["src/hooks/*"],
-      "@interfaces/*": ["src/interfaces/*"]
+      "@interfaces/*": ["src/interfaces/*"],
+      "@styles/*": ["src/styles/*"]
     }
   },
   "include": [
