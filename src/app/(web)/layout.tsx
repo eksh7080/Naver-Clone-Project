@@ -4,6 +4,7 @@
  * 설명: 웹툰 그룹화 공통 레이아웃 (헤더 추가)
  */
 import Header from "@components/layout/header";
+import ReactQueryProviders from "@lib/provider";
 import styled from "styled-components";
 
 const WebContainer = styled.section`
@@ -18,10 +19,10 @@ const WebDisplayLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <>
+    <ReactQueryProviders>
       <Header />
       <WebContainer>{children}</WebContainer>
-    </>
+    </ReactQueryProviders>
   );
 };
 
