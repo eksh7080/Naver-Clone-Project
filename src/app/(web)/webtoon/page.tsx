@@ -13,6 +13,7 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import WebtoonApi from "src/app/api/_instances/WebtoonApi";
+import { ConvertWeekChange } from "@utils/Webtoon";
 
 const AllWebtoonContainer = styled.div`
   /* 신작 웹툰 */
@@ -123,15 +124,26 @@ const AllWebtoonContainer = styled.div`
         }
       }
     }
+
+    .AllWebtoonListFrame {
+      display: flex;
+      border: 1px solid #ebebeb;
+      .webtoonListColumn {
+        .webtoonListContent {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
   }
 `;
 
 const Webtoon = () => {
   const param = {
-    perPage: 1,
-    page: 10,
+    perPage: 10,
+    page: 1,
     service: "naver",
-    updateDay: "fri",
+    updateDay: "mon",
   };
 
   const { data: WebtoonList } = useQuery({
@@ -252,7 +264,7 @@ const Webtoon = () => {
           <div className="webtoonListTitle">
             <h2>요일별 전체 웹툰</h2>
             <div className="webtoonFilter">
-              <button type="button">요일별</button>
+              <button type="button">인기순</button>
               <button type="button">업데이트순</button>
               <button type="button">조회순</button>
               <button type="button">별점순</button>
@@ -260,10 +272,26 @@ const Webtoon = () => {
           </div>
           <div className="AllWebtoonListFrame">
             <div className="webtoonListColumn">
-              <strong></strong>
-              <ul>
-                <li></li>
-              </ul>
+              <h3>월요일</h3>
+              {WebtoonList?.data.webtoons.map((list, index) => (
+                <ul className="webtoonListContent" key={index}>
+                  <li>
+                    <Link href="#">
+                      <img
+                        src={list.img}
+                        alt="webtoon image"
+                        width={160}
+                        height={207}
+                      />
+                    </Link>
+                    <div className="webtoonAuthor">
+                      <Link href="#">
+                        <strong>{list.author}</strong>
+                      </Link>
+                    </div>
+                  </li>
+                </ul>
+              ))}
             </div>
           </div>
         </div>
