@@ -129,9 +129,39 @@ const AllWebtoonContainer = styled.div`
       display: flex;
       border: 1px solid #ebebeb;
       .webtoonListColumn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3 {
+          font-size: 1.6rem;
+        }
         .webtoonListContent {
-          display: flex;
-          flex-direction: column;
+          li {
+            width: 16rem;
+            height: 20.7rem;
+            &:not(:first-of-type) {
+              padding-top: 2.4rem;
+            }
+            a {
+              display: block;
+              /* width: 100%;
+              height: ; */
+              img {
+                border-radius: 0.4rem;
+                &::after {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  border: 1px solid rgba(0, 0, 0, 0.1);
+                  border-radius: 4px;
+                  z-index: 10;
+                  content: "";
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -272,10 +302,10 @@ const Webtoon = () => {
           </div>
           <div className="AllWebtoonListFrame">
             <div className="webtoonListColumn">
-              <h3>월요일</h3>
-              {WebtoonList?.data.webtoons.map((list, index) => (
-                <ul className="webtoonListContent" key={index}>
-                  <li>
+              <h3>월요웹툰</h3>
+              <ul className="webtoonListContent">
+                {WebtoonList?.data.webtoons.map((list, index) => (
+                  <li key={index}>
                     <Link href="#">
                       <img
                         src={list.img}
@@ -290,8 +320,8 @@ const Webtoon = () => {
                       </Link>
                     </div>
                   </li>
-                </ul>
-              ))}
+                ))}
+              </ul>
             </div>
           </div>
         </div>
