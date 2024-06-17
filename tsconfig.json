@@ -26,7 +26,8 @@
       "@db/*": ["src/db/*"],
       "@hooks/*": ["src/hooks/*"],
       "@interfaces/*": ["src/interfaces/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@api/*": ["src/app/api/*"]
     }
   },
   "include": [

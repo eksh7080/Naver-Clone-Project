@@ -12,7 +12,7 @@ import Thumnail04 from "@public/images/thumnail04.jpg";
 import styled from "styled-components";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import WebtoonApi from "src/app/api/_instances/WebtoonApi";
+import WebtoonApi from "@api/_instances/WebtoonApi";
 import { ConvertWeekChange } from "@utils/Webtoon";
 
 const AllWebtoonContainer = styled.div`
