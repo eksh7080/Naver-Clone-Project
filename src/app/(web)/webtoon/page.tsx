@@ -169,12 +169,20 @@ const AllWebtoonContainer = styled.div`
 `;
 
 const Webtoon = () => {
-  const param = {
-    perPage: 10,
-    page: 1,
-    service: "naver",
-    updateDay: "mon",
-  };
+  // const param = {
+  //   perPage: 10,
+  //   page: 1,
+  //   service: "naver",
+  //   updateDay: "mon",
+  // };
+
+  // const { data: WebtoonList } = useQuery({
+  //   queryKey: ["getWebtoonList"],
+  //   queryFn: async () => {
+  //     const res = await WebtoonApi.getWebtoonList(param);
+  //     return res;
+  //   },
+  // });
 
   const { data: WebtoonList } = useQuery({
     queryKey: ["getWebtoonList"],
@@ -304,7 +312,7 @@ const Webtoon = () => {
             <div className="webtoonListColumn">
               <h3>월요웹툰</h3>
               <ul className="webtoonListContent">
-                {WebtoonList?.data.webtoons.map((list, index) => (
+                {/* {WebtoonList?.data.webtoons.map((list, index) => (
                   <li key={index}>
                     <Link href="#">
                       <img
@@ -320,7 +328,7 @@ const Webtoon = () => {
                       </Link>
                     </div>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </div>
           </div>
