@@ -12,4 +12,12 @@ export default {
     });
     return res;
   },
+
+  async getNaverWebtoonList() {
+    const res = await instance({
+      url: `https://comic.naver.com/api/webtoon/titlelist/weekday?order=user`,
+      method: "GET",
+    });
+    return res;
+  },
 };

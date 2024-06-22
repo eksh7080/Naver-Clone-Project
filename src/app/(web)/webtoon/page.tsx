@@ -184,15 +184,15 @@ const Webtoon = () => {
   //   },
   // });
 
-  const { data: WebtoonList } = useQuery({
-    queryKey: ["getWebtoonList"],
-    queryFn: async () => {
-      const res = await WebtoonApi.getWebtoonList(param);
-      return res;
-    },
-  });
+  // const { data: NaverWebtoonList } = useQuery({
+  //   queryKey: ["getNaverWebtoonList"],
+  //   queryFn: async () => {
+  //     const res = await WebtoonApi.getNaverWebtoonList();
+  //     return res;
+  //   },
+  // });
 
-  console.log(WebtoonList, "웹툰 리스트");
+  // console.log(NaverWebtoonList, "웹툰 리스트");
 
   return (
     <>
