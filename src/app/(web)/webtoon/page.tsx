@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import WebtoonApi from "@api/_instances/WebtoonApi";
 import { ConvertWeekChange } from "@utils/Webtoon";
+import axios from "axios";
 
 const AllWebtoonContainer = styled.div`
   /* 신작 웹툰 */
@@ -187,7 +188,7 @@ const Webtoon = () => {
   // const { data: NaverWebtoonList } = useQuery({
   //   queryKey: ["getNaverWebtoonList"],
   //   queryFn: async () => {
-  //     const res = await WebtoonApi.getNaverWebtoonList();
+  //     const res = await axios.get("http://localhost:3000/api/webtoon");
   //     return res;
   //   },
   // });
