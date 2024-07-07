@@ -15,7 +15,6 @@ import { HeaderDynamicNavList } from "@interfaces/HeaderInterface";
 const HeaderContainer = styled.header`
   max-width: 100%;
   width: 100%;
-
   /* 위 아래 공통속성 */
   div:where(.top, .bottom, .subNav) {
     border-bottom: 0.1rem solid #ebebeb;
@@ -45,7 +44,6 @@ const HeaderContainer = styled.header`
       }
     }
   }
-
   .top {
     nav {
       ul {
@@ -83,7 +81,6 @@ const HeaderContainer = styled.header`
       }
     }
   }
-
   .bottom {
     nav {
       ul {
@@ -95,7 +92,6 @@ const HeaderContainer = styled.header`
       }
     }
   }
-
   .subNav {
     nav {
       ul {
@@ -125,15 +121,11 @@ const Header = () => {
     ).then(result => result.json());
 
     setHeaderNavList([...res]);
-
-    console.log(res, "네브리스트 - 00000");
   }
 
   useEffect(() => {
     getData();
   }, [changeNavHref]);
-
-  console.log(headerNavList, "헤더 네브 릿그트 -==- -00000");
 
   return (
     <HeaderContainer>
