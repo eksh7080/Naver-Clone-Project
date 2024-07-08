@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  // await connectDB();
+  await connectDB();
 
   try {
     const body = await req.json();
@@ -32,7 +32,6 @@ export async function POST(req: NextRequest) {
     const savedWebtoon = await webtoon.save();
 
     return NextResponse.json(savedWebtoon, { status: 201 });
-    // return NextResponse.json([]);
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }
