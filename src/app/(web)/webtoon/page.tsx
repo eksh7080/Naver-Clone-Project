@@ -193,18 +193,20 @@ const Webtoon = () => {
     },
   });
 
-  // const { data: NaverSavedList } = useQuery({
-  //   queryKey: ["saveNaverWebtoonList"],
-  //   queryFn: async () => {
-  //     const res = await axios.post("http://localhost:3000/api/webtoon", {
-  //       body: JSON.stringify(NaverWebtoonList),
-  //     });
-  //     return res;
-  //   },
-  // });
+  const { data: NaverSavedList } = useQuery({
+    queryKey: ["saveNaverWebtoonList"],
+    queryFn: async () => {
+      const res = await axios.post(
+        "http://localhost:3000/api/webtoon",
+        NaverWebtoonList,
+      );
+      return res.data;
+    },
+    enabled: !!NaverWebtoonList,
+  });
 
   console.log(NaverWebtoonList, "웹툰 리스트");
-  // console.log(NaverSavedList, "저장 웹툰 리스트");
+  console.log(NaverSavedList, "저장 웹툰 리스트");
 
   return (
     <>

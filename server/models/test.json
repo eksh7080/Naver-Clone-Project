@@ -1,0 +1,53 @@
+{
+  "day": "m",
+  "title": {
+    "S": [
+      {
+        "titleId": 123123,
+        "titleName": "asdfadsf",
+        "author": "dfg",
+        "up": false,
+        "rest": false,
+        "adult": false,
+        "openToday": false,
+        "potenUp": false,
+        "new": false
+      },
+      {
+        "titleId": 123123,
+        "titleName": "asdfadsf",
+        "author": "dfg",
+        "up": false,
+        "rest": false,
+        "adult": false,
+        "openToday": false,
+        "potenUp": false,
+        "new": false
+      }
+    ],
+    "T": [
+      {
+        "titleId": 123123,
+        "titleName": "asdfadsf",
+        "author": "dfg",
+        "up": false,
+        "rest": false,
+        "adult": false,
+        "openToday": false,
+        "potenUp": false,
+        "new": false
+      },
+      {
+        "titleId": 123123,
+        "titleName": "asdfadsf",
+        "author": "dfg",
+        "up": false,
+        "rest": false,
+        "adult": false,
+        "openToday": false,
+        "potenUp": false,
+        "new": false
+      }
+    ]
+  }
+}
