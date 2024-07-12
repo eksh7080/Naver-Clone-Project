@@ -185,28 +185,38 @@ const Webtoon = () => {
   //   },
   // });
 
-  const { data: NaverWebtoonList } = useQuery({
-    queryKey: ["getNaverWebtoonList"],
+  // const { data: NaverWebtoonList } = useQuery({
+  //   queryKey: ["getNaverWebtoonList"],
+  //   queryFn: async () => {
+  //     const res = await axios.get("http://localhost:3000/api/webtoon");
+  //     return res;
+  //   },
+  // });
+
+  // const { data: NaverSavedList } = useQuery({
+  //   queryKey: ["saveNaverWebtoonList"],
+  //   queryFn: async () => {
+  //     const res = await axios.post(
+  //       "http://localhost:3000/api/webtoon",
+  //       NaverWebtoonList,
+  //     );
+  //     return res.data;
+  //   },
+  //   enabled: !!NaverWebtoonList,
+  // });
+
+  // console.log(NaverWebtoonList, "웹툰 리스트");
+  // console.log(NaverSavedList, "저장 웹툰 리스트");
+
+  const { data: getSavedWebtoonList } = useQuery({
+    queryKey: ["getSavedNaverWebtoons"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:3000/api/webtoon");
+      const res = await WebtoonApi.getNaverWebtoonList();
       return res;
     },
   });
 
-  const { data: NaverSavedList } = useQuery({
-    queryKey: ["saveNaverWebtoonList"],
-    queryFn: async () => {
-      const res = await axios.post(
-        "http://localhost:3000/api/webtoon",
-        NaverWebtoonList,
-      );
-      return res.data;
-    },
-    enabled: !!NaverWebtoonList,
-  });
-
-  console.log(NaverWebtoonList, "웹툰 리스트");
-  console.log(NaverSavedList, "저장 웹툰 리스트");
+  console.log(getSavedWebtoonList, "디비 웹툰 리스트 데이터");
 
   return (
     <>

@@ -5,11 +5,10 @@
  */
 "use client";
 import styled from "styled-components";
-import Link from "next/link";
 import GlobalNav from "./nav/GlobalNav";
 import SubNav from "./nav/SubNav";
-import { navCheck } from "@utils/Header";
-import { useEffect, useRef, useState } from "react";
+import SubNavList from "@db/SubNavList.json";
+import { useEffect, useState } from "react";
 import { HeaderDynamicNavList } from "@interfaces/HeaderInterface";
 
 const HeaderContainer = styled.header`
@@ -108,23 +107,11 @@ const HeaderContainer = styled.header`
 
 const Header = () => {
   const [changeNavHref, setChangeNavHref] = useState("");
-  const [headerNavList, setHeaderNavList] = useState<HeaderDynamicNavList[]>(
-    [],
-  );
-
-  async function getData() {
-    const res: HeaderDynamicNavList[] = await fetch(
-      "http://localhost:3000/api/header",
-      {
-        method: "GET",
-      },
-    ).then(result => result.json());
-
-    setHeaderNavList([...res]);
-  }
+  const [headerNavList, setHeaderNavList] =
+    useState<HeaderDynamicNavList[]>(SubNavList);
 
   useEffect(() => {
-    getData();
+    setHeaderNavList(SubNavList);
   }, [changeNavHref]);
 
   return (

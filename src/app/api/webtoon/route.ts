@@ -26,9 +26,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    console.log(body.data, "바디");
     const webtoon = new webtoonList(body.data);
-    console.log(webtoon, "웹툰 스키마");
     const savedWebtoon = await webtoon.save();
 
     return NextResponse.json(savedWebtoon, { status: 201 });

@@ -12,8 +12,6 @@ interface IProps {
 }
 
 const SubNav = ({ changeNavHref, headerNavList }: IProps) => {
-  console.log(changeNavHref, "체인지 네브 경로 - 2222222", headerNavList);
-
   return (
     <div className="subNav">
       <nav>
