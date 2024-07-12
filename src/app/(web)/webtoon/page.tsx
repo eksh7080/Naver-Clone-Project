@@ -13,8 +13,9 @@ import styled from "styled-components";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import WebtoonApi from "@api/_instances/WebtoonApi";
-import { ConvertWeekChange } from "@utils/Webtoon";
+import { ConvertTodayWeek, ConvertWeekChange } from "@utils/Webtoon";
 import axios from "axios";
+import dayjs from "dayjs";
 
 const AllWebtoonContainer = styled.div`
   /* 신작 웹툰 */
@@ -170,21 +171,6 @@ const AllWebtoonContainer = styled.div`
 `;
 
 const Webtoon = () => {
-  // const param = {
-  //   perPage: 10,
-  //   page: 1,
-  //   service: "naver",
-  //   updateDay: "mon",
-  // };
-
-  // const { data: WebtoonList } = useQuery({
-  //   queryKey: ["getWebtoonList"],
-  //   queryFn: async () => {
-  //     const res = await WebtoonApi.getWebtoonList(param);
-  //     return res;
-  //   },
-  // });
-
   // const { data: NaverWebtoonList } = useQuery({
   //   queryKey: ["getNaverWebtoonList"],
   //   queryFn: async () => {
@@ -208,15 +194,18 @@ const Webtoon = () => {
   // console.log(NaverWebtoonList, "웹툰 리스트");
   // console.log(NaverSavedList, "저장 웹툰 리스트");
 
-  const { data: getSavedWebtoonList } = useQuery({
-    queryKey: ["getSavedNaverWebtoons"],
-    queryFn: async () => {
-      const res = await WebtoonApi.getNaverWebtoonList();
-      return res;
-    },
-  });
+  // const { data: getSavedWebtoonList } = useQuery({
+  //   queryKey: ["getSavedNaverWebtoons"],
+  //   queryFn: async () => {
+  //     const res = await WebtoonApi.getNaverWebtoonList();
+  //     return res;
+  //   },
+  // });
 
-  console.log(getSavedWebtoonList, "디비 웹툰 리스트 데이터");
+  // console.log(getSavedWebtoonList, "디비 웹툰 리스트 데이터");
+  const today = new Date();
+  const week = today.toString().split(" ")[0];
+  console.log(typeof ConvertTodayWeek(week));
 
   return (
     <>

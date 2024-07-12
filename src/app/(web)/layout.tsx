@@ -6,6 +6,11 @@
 import Header from "@components/layout/header";
 import ReactQueryProviders from "@lib/provider";
 import styled from "styled-components";
+import dayjs from "dayjs";
+import "dayjs/locale/ko";
+
+// dayjs 로케일, 플러그인 설정
+dayjs.locale("ko");
 
 const WebContainer = styled.section`
   max-width: 1240px;

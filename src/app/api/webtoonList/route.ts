@@ -1,13 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@server/index";
 import webtoonList from "@server/models/webtoonList";
+import { ConvertWeekId } from "@utils/Webtoon";
 
 export async function GET(req: NextRequest) {
+  const today = new Date();
+  const week = today.toString().split(" ")[0];
   try {
     await connectDB();
 
-    const findeList = await webtoonList.find();
-    console.log("파인드 디비 리스트:", findeList);
+    const todayId = ConvertWeekId(week);
+
+    const findTodayWebtoon = await webtoonList.findById(todayId);
+
+    // const filterTodayWebtoon = findTodayWebtoon.titleListMap.filter(
+    //   list => list === ConvertTodayWeek(week),
+    // );
+    console.log(ConvertTodayWeek(week));
 
     return NextResponse.json([]);
   } catch (error) {
