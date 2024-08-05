@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@server/index";
 import webtoonList from "@server/models/webtoonList";
-import { ConvertWeekId } from "@utils/Webtoon";
+import { ConvertTodayWeek, ConvertWeekId } from "@utils/Webtoon";
 
 export async function GET(req: NextRequest) {
   const today = new Date();
@@ -10,19 +10,22 @@ export async function GET(req: NextRequest) {
     await connectDB();
 
     const todayId = ConvertWeekId(week);
-
     const findTodayWebtoon = await webtoonList.findById(todayId);
 
-    // const filterTodayWebtoon = findTodayWebtoon.titleListMap.filter(
-    //   list => list === ConvertTodayWeek(week),
+    // const filterTodayWebtoon = Object.keys(findTodayWebtoon.titleListMap).map(
+    //   day => {
+    //     findTodayWebtoon.titleListMap[day] === week;
+    //   },
     // );
-    console.log(ConvertTodayWeek(week));
 
+    console.log("1111");
+    // console.log(filterTodayWebtoon, "555");
+    const ent = Object.entries(findTodayWebtoon.titleListMap);
+    const ass = Object.fromEntries(ent);
+
+    console.log("@@@@@", ass);
     return NextResponse.json([]);
   } catch (error) {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 },
-    );
+    return NextResponse.json(error);
   }
 }

@@ -194,18 +194,19 @@ const Webtoon = () => {
   // console.log(NaverWebtoonList, "웹툰 리스트");
   // console.log(NaverSavedList, "저장 웹툰 리스트");
 
-  // const { data: getSavedWebtoonList } = useQuery({
-  //   queryKey: ["getSavedNaverWebtoons"],
-  //   queryFn: async () => {
-  //     const res = await WebtoonApi.getNaverWebtoonList();
-  //     return res;
-  //   },
-  // });
+  const { data: getSavedWebtoonList } = useQuery({
+    queryKey: ["getSavedNaverWebtoons"],
+    queryFn: async () => {
+      const res = await WebtoonApi.getNaverWebtoonList();
+      return res;
+    },
+    enabled: true,
+  });
 
-  // console.log(getSavedWebtoonList, "디비 웹툰 리스트 데이터");
+  console.log(getSavedWebtoonList, "디비 웹툰 리스트 데이터");
+
   const today = new Date();
   const week = today.toString().split(" ")[0];
-  console.log(typeof ConvertTodayWeek(week));
 
   return (
     <>
