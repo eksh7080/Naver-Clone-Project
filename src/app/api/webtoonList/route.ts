@@ -11,20 +11,10 @@ export async function GET(req: NextRequest) {
 
     const todayId = ConvertWeekId(week);
     const findTodayWebtoon = await webtoonList.findById(todayId);
+    const entriesObj = Object.entries(findTodayWebtoon.titleListMap);
+    const fromEntriesObj = Object.fromEntries(entriesObj);
 
-    // const filterTodayWebtoon = Object.keys(findTodayWebtoon.titleListMap).map(
-    //   day => {
-    //     findTodayWebtoon.titleListMap[day] === week;
-    //   },
-    // );
-
-    console.log("1111");
-    // console.log(filterTodayWebtoon, "555");
-    const ent = Object.entries(findTodayWebtoon.titleListMap);
-    const ass = Object.fromEntries(ent);
-
-    console.log("@@@@@", ass);
-    return NextResponse.json([]);
+    return NextResponse.json(fromEntriesObj);
   } catch (error) {
     return NextResponse.json(error);
   }

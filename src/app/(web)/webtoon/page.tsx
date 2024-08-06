@@ -10,12 +10,13 @@ import Thumnail02 from "@public/images/thumnail02.jpg";
 import Thumnail03 from "@public/images/thumnail03.jpg";
 import Thumnail04 from "@public/images/thumnail04.jpg";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import WebtoonApi from "@api/_instances/WebtoonApi";
 import { ConvertTodayWeek, ConvertWeekChange } from "@utils/Webtoon";
 import axios from "axios";
 import dayjs from "dayjs";
+import { WebtoonListContents } from "@interfaces/WebtoonList";
 
 const AllWebtoonContainer = styled.div`
   /* 신작 웹툰 */
@@ -171,6 +172,9 @@ const AllWebtoonContainer = styled.div`
 `;
 
 const Webtoon = () => {
+  const [newToonList, setNewToonList] = useState();
+  const [dbWebtoonList, setDbWebtoonList] = useState<WebtoonListContents>();
+
   // const { data: NaverWebtoonList } = useQuery({
   //   queryKey: ["getNaverWebtoonList"],
   //   queryFn: async () => {
@@ -194,19 +198,17 @@ const Webtoon = () => {
   // console.log(NaverWebtoonList, "웹툰 리스트");
   // console.log(NaverSavedList, "저장 웹툰 리스트");
 
-  const { data: getSavedWebtoonList } = useQuery({
+  const { data: getSavedWebtoonList } = useQuery<WebtoonListContents>({
     queryKey: ["getSavedNaverWebtoons"],
     queryFn: async () => {
       const res = await WebtoonApi.getNaverWebtoonList();
-      return res;
+      return res.data;
     },
-    enabled: true,
   });
 
-  console.log(getSavedWebtoonList, "디비 웹툰 리스트 데이터");
+  console.log(getSavedWebtoonList);
 
-  const today = new Date();
-  const week = today.toString().split(" ")[0];
+  // const filterNewWebToon =
 
   return (
     <>
@@ -239,7 +241,7 @@ const Webtoon = () => {
                 </dd>
               </dl>
             </li>
-            <li>
+            {/* <li>
               <article className="imageFrame">
                 <span className="circleBadge">신작</span>
                 <Image
@@ -309,7 +311,7 @@ const Webtoon = () => {
                   성공할 수 있을까?
                 </dd>
               </dl>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className="AllWebtoonListWrap">
