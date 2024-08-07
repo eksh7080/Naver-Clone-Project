@@ -13,10 +13,15 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import WebtoonApi from "@api/_instances/WebtoonApi";
-import { ConvertTodayWeek, ConvertWeekChange } from "@utils/Webtoon";
+import {
+  ConvertTodayWeek,
+  ConvertWeekChange,
+  filterTodayNewWebtoon,
+} from "@utils/Webtoon";
 import axios from "axios";
 import dayjs from "dayjs";
-import { WebtoonListContents } from "@interfaces/WebtoonList";
+import { WebtoonListAll, WebtoonListContents } from "@interfaces/WebtoonList";
+import { usePathname } from "next/navigation";
 
 const AllWebtoonContainer = styled.div`
   /* 신작 웹툰 */
@@ -172,8 +177,11 @@ const AllWebtoonContainer = styled.div`
 `;
 
 const Webtoon = () => {
-  const [newToonList, setNewToonList] = useState();
-  const [dbWebtoonList, setDbWebtoonList] = useState<WebtoonListContents>();
+  const [newToonList, setNewToonList] = useState<WebtoonListContents>([]);
+  const [dbWebtoonList, setDbWebtoonList] = useState<WebtoonListAll>([]);
+  const pathName = usePathname();
+  const today = new Date();
+  const week = today.toString().split(" ")[0];
 
   // const { data: NaverWebtoonList } = useQuery({
   //   queryKey: ["getNaverWebtoonList"],
@@ -198,17 +206,13 @@ const Webtoon = () => {
   // console.log(NaverWebtoonList, "웹툰 리스트");
   // console.log(NaverSavedList, "저장 웹툰 리스트");
 
-  const { data: getSavedWebtoonList } = useQuery<WebtoonListContents>({
+  const { data: getSavedWebtoonList } = useQuery<WebtoonListAll>({
     queryKey: ["getSavedNaverWebtoons"],
     queryFn: async () => {
       const res = await WebtoonApi.getNaverWebtoonList();
       return res.data;
     },
   });
-
-  console.log(getSavedWebtoonList);
-
-  // const filterNewWebToon =
 
   return (
     <>
@@ -219,28 +223,43 @@ const Webtoon = () => {
             <Link href={"#"}>신작웹툰 더보기 {">"}</Link>
           </div>
           <ul className="newWebtoonList">
-            <li>
-              <article className="imageFrame">
-                <span className="circleBadge">신작</span>
-                <Image
-                  src={Thumnail01}
-                  alt="Thumnail01"
-                  sizes="(max-width: 300px),(max-height: 170px)"
-                  fill={true}
-                  priority
-                />
-              </article>
-              <dl className="contentDescWrap">
-                <dt className="title">환생무협기</dt>
-                <dd className="author">스카니아</dd>
-                <dd className="desc">
-                  죽음 이후 환생한곳은 무림? 이곳은 어떻게 돼먹은 곳이야!! 내가
-                  이곳에서 잘 살아갈수 있을까? 적응하려는 찰나 기인을 만나게
-                  되는데 제자가 되면 모든걸 다 이룰 수 있을거라고? 속는셈치고 한
-                  번 믿어볼까
-                </dd>
-              </dl>
-            </li>
+            {getSavedWebtoonList?.[ConvertTodayWeek(week)].map(
+              (item: WebtoonListContents, index) => (
+                <>
+                  {index < 4 && (
+                    <li key={item._id}>
+                      <article className="imageFrame">
+                        <span className="circleBadge">신작</span>
+                        {/* <Image
+                      src={item.thumbnailUrl}
+                      alt="Thumnail"
+                      sizes="(max-width: 300px),(max-height: 170px)"
+                      fill={true}
+                      priority
+                    /> */}
+                        <img
+                          src={item.thumbnailUrl}
+                          alt="썸네일"
+                          sizes="(max-width: 300px),(max-height: 170px)"
+                          width={"100%"}
+                          height={"100%"}
+                        />
+                      </article>
+                      <dl className="contentDescWrap">
+                        <dt className="title">{item.titleName}</dt>
+                        <dd className="author">{item.author}</dd>
+                        <dd className="desc">
+                          죽음 이후 환생한곳은 무림? 이곳은 어떻게 돼먹은
+                          곳이야!! 내가 이곳에서 잘 살아갈수 있을까? 적응하려는
+                          찰나 기인을 만나게 되는데 제자가 되면 모든걸 다 이룰
+                          수 있을거라고? 속는셈치고 한 번 믿어볼까
+                        </dd>
+                      </dl>
+                    </li>
+                  )}
+                </>
+              ),
+            )}
             {/* <li>
               <article className="imageFrame">
                 <span className="circleBadge">신작</span>

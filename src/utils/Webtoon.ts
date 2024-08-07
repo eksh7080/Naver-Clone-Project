@@ -3,6 +3,8 @@
  * 설명: 웹툰 리스트 관련 유틸함수 모아놓은 스크립트
  */
 
+import { WebtoonListAll, WebtoonListContents } from "@interfaces/WebtoonList";
+
 /**
  * 금일 요일에 따른 몽고 디비 특정 document ID 반환
  * @return {string}
@@ -60,5 +62,17 @@ export const ConvertTodayWeek = (week: string) => {
       break;
     default:
       break;
+  }
+};
+
+export const filterTodayNewWebtoon = (webtoonList: WebtoonListAll) => {
+  const today = new Date();
+  const week = today.toString().split(" ")[0];
+  if (webtoonList) {
+    const filterList = webtoonList[ConvertTodayWeek(week)].filter(
+      (list: WebtoonListContents) => list.new === true,
+    );
+    console.log(filterList, " ts");
+    return filterList;
   }
 };
