@@ -10,7 +10,7 @@ import Thumnail02 from "@public/images/thumnail02.jpg";
 import Thumnail03 from "@public/images/thumnail03.jpg";
 import Thumnail04 from "@public/images/thumnail04.jpg";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import WebtoonApi from "@api/_instances/WebtoonApi";
 import {
@@ -137,6 +137,7 @@ const AllWebtoonContainer = styled.div`
       display: flex;
       border: 1px solid #ebebeb;
       .webtoonListColumn {
+        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -145,28 +146,30 @@ const AllWebtoonContainer = styled.div`
         }
         .webtoonListContent {
           li {
-            width: 16rem;
-            height: 20.7rem;
+            width: 160px;
             &:not(:first-of-type) {
               padding-top: 2.4rem;
             }
-            a {
-              display: block;
-              /* width: 100%;
-              height: ; */
+            article {
+              width: 16rem;
+              height: 20.7rem;
               img {
-                border-radius: 0.4rem;
-                &::after {
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  border: 1px solid rgba(0, 0, 0, 0.1);
-                  border-radius: 4px;
-                  z-index: 10;
-                  content: "";
-                }
+                border-radius: 4px;
+                width: 100%;
+                height: 100%;
+              }
+            }
+            div {
+              line-height: 3.6rem;
+              strong {
+                display: -webkit-box;
+                font-size: 15px;
+                font-weight: 600;
+                text-overflow: ellipsis;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                white-space: pre-wrap;
+                overflow: hidden;
               }
             }
           }
@@ -225,18 +228,11 @@ const Webtoon = () => {
           <ul className="newWebtoonList">
             {getSavedWebtoonList?.[ConvertTodayWeek(week)].map(
               (item: WebtoonListContents, index) => (
-                <>
+                <Fragment key={item._id}>
                   {index < 4 && (
-                    <li key={item._id}>
+                    <li>
                       <article className="imageFrame">
                         <span className="circleBadge">신작</span>
-                        {/* <Image
-                      src={item.thumbnailUrl}
-                      alt="Thumnail"
-                      sizes="(max-width: 300px),(max-height: 170px)"
-                      fill={true}
-                      priority
-                    /> */}
                         <img
                           src={item.thumbnailUrl}
                           alt="썸네일"
@@ -257,80 +253,9 @@ const Webtoon = () => {
                       </dl>
                     </li>
                   )}
-                </>
+                </Fragment>
               ),
             )}
-            {/* <li>
-              <article className="imageFrame">
-                <span className="circleBadge">신작</span>
-                <Image
-                  src={Thumnail02}
-                  alt="Thumnail02"
-                  sizes="(max-width: 300px),(max-height: 170px)"
-                  fill={true}
-                  priority
-                />
-              </article>
-              <dl className="contentDescWrap">
-                <dt className="title">에녹:빛나는나무</dt>
-                <dd className="author">베라</dd>
-                <dd className="desc">
-                  “갑옷을 입은 자들은 결코 갑옷을 벗지 못하고 영원히 죽지
-                  않으며, 고통 속에 살 것이다." 한 마녀의 저주로 '저주받은
-                  기사'들이 세상을 배회하게 된다. 그리고 저주받은 기사를 마주친
-                  소년, 에녹. 그가 겪게 되는 이야기.
-                </dd>
-              </dl>
-            </li>
-            <li>
-              <article className="imageFrame">
-                <span className="circleBadge">신작</span>
-                <Image
-                  src={Thumnail03}
-                  alt="Thumnail03"
-                  sizes="(max-width: 300px),(max-height: 170px)"
-                  fill={true}
-                  priority
-                />
-              </article>
-              <dl className="contentDescWrap">
-                <dt className="title">오늘만 사는 기사</dt>
-                <dd className="author">제니스</dd>
-                <dd className="desc">
-                  "넌 천재다" 어릴 때 들었던 말이 독이었다. 엔크리드는 기사를
-                  꿈꿨다. 헛된 꿈이라는 건 금세 알았다. "그런 실력으로 칼밥을
-                  먹겠다고?" 누군가는 비웃고. "그만둬라." 누군가는 조언했다.
-                  그럼에도 빛 바랜 꿈은 그대로였다. 덜 자고 더 뛰고 더 휘둘렀다.
-                  그리 살던 어느 날이었다. 전장에서 목이 찔려 죽은 뒤였다. 다시
-                  눈을 뜬 엔크리드는 죽기 전 '오늘' 아침에 돌아와 있었다.
-                </dd>
-              </dl>
-            </li>
-            <li>
-              <article className="imageFrame">
-                <span className="circleBadge">신작</span>
-                <Image
-                  src={Thumnail04}
-                  alt="Thumnail04"
-                  sizes="(max-width: 300px),(max-height: 170px)"
-                  fill={true}
-                  priority
-                />
-              </article>
-              <dl className="contentDescWrap">
-                <dt className="title">이기적 연애론</dt>
-                <dd className="author">크로아</dd>
-                <dd className="desc">
-                  "넌 어떨까? 내가 다른 남자와 행복하게 있는 걸 보면." 평범한
-                  30대인 '유민'과 '현도'. 모종의 이유로 각자의 연인에게 헤어짐을
-                  고했지만, 사실은 누구보다 미련이 넘치는 두 사람. 전 연인이
-                  자신을 붙잡아 줬으면 하는 이기적인 마음이 통한 두 사람은
-                  '계획'을 세운다. 그건 바로, 가짜 데이트를 하며 서로의 전
-                  연인을 자극해 보는 것! 이기적이고 어리석은 이들의 계획은
-                  성공할 수 있을까?
-                </dd>
-              </dl>
-            </li> */}
           </ul>
         </div>
         <div className="AllWebtoonListWrap">
@@ -347,23 +272,103 @@ const Webtoon = () => {
             <div className="webtoonListColumn">
               <h3>월요웹툰</h3>
               <ul className="webtoonListContent">
-                {/* {WebtoonList?.data.webtoons.map((list, index) => (
-                  <li key={index}>
-                    <Link href="#">
-                      <img
-                        src={list.img}
-                        alt="webtoon image"
-                        width={160}
-                        height={207}
-                      />
-                    </Link>
-                    <div className="webtoonAuthor">
-                      <Link href="#">
-                        <strong>{list.author}</strong>
-                      </Link>
-                    </div>
-                  </li>
-                ))} */}
+                {getSavedWebtoonList?.MONDAY.map(
+                  (item: WebtoonListContents, index) => (
+                    <li key={item._id}>
+                      <article>
+                        <img src={item.thumbnailUrl} alt="썸네일" />
+                      </article>
+                      <div>
+                        <strong>{item.titleName}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+            <div className="webtoonListColumn">
+              <h3>화요웹툰</h3>
+              <ul className="webtoonListContent">
+                {getSavedWebtoonList?.TUESDAY.map(
+                  (item: WebtoonListContents, index) => (
+                    <li key={item._id}>
+                      <article>
+                        <img src={item.thumbnailUrl} alt="썸네일" />
+                      </article>
+                      <div>
+                        <strong>{item.titleName}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+            <div className="webtoonListColumn">
+              <h3>수요웹툰</h3>
+              <ul className="webtoonListContent">
+                {getSavedWebtoonList?.WEDNESDAY.map(
+                  (item: WebtoonListContents, index) => (
+                    <li key={item._id}>
+                      <article>
+                        <img src={item.thumbnailUrl} alt="썸네일" />
+                      </article>
+                      <div>
+                        <strong>{item.titleName}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+            <div className="webtoonListColumn">
+              <h3>목요웹툰</h3>
+              <ul className="webtoonListContent">
+                {getSavedWebtoonList?.THURSDAY.map(
+                  (item: WebtoonListContents, index) => (
+                    <li key={item._id}>
+                      <article>
+                        <img src={item.thumbnailUrl} alt="썸네일" />
+                      </article>
+                      <div>
+                        <strong>{item.titleName}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+            <div className="webtoonListColumn">
+              <h3>금요웹툰</h3>
+              <ul className="webtoonListContent">
+                {getSavedWebtoonList?.FRIDAY.map(
+                  (item: WebtoonListContents, index) => (
+                    <li key={item._id}>
+                      <article>
+                        <img src={item.thumbnailUrl} alt="썸네일" />
+                      </article>
+                      <div>
+                        <strong>{item.titleName}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+            <div className="webtoonListColumn">
+              <h3>토요웹툰</h3>
+              <ul className="webtoonListContent">
+                {getSavedWebtoonList?.SATURDAY.map(
+                  (item: WebtoonListContents, index) => (
+                    <li key={item._id}>
+                      <article>
+                        <img src={item.thumbnailUrl} alt="썸네일" />
+                      </article>
+                      <div>
+                        <strong>{item.titleName}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
           </div>
