@@ -52,12 +52,13 @@ const AllWebtoonContainer = styled.div`
         flex-direction: column;
         article.imageFrame {
           position: relative;
-          width: 30rem;
-          height: 17rem;
+          width: 27.2rem;
+          height: 16.1rem;
           span.circleBadge {
             position: absolute;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             font-size: 1.1rem;
             font-weight: 700;
             z-index: 20;
@@ -141,6 +142,9 @@ const AllWebtoonContainer = styled.div`
         display: flex;
         flex-direction: column;
         align-items: center;
+        &:not(:last-of-type) {
+          border-right: 1px solid #ebebeb;
+        }
         h3 {
           font-size: 1.6rem;
         }

@@ -4,23 +4,34 @@
  */
 
 import { HeaderDynamicNavList } from "@interfaces/HeaderInterface";
+import { convertWeekDay, isActiveNavCheck } from "@utils/Header";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface IProps {
-  changeNavHref: string;
   headerNavList: HeaderDynamicNavList[];
 }
 
-const SubNav = ({ changeNavHref, headerNavList }: IProps) => {
+const SubNav = ({ headerNavList }: IProps) => {
+  const pathName = usePathname();
+
   return (
     <div className="subNav">
       <nav>
         <ul>
           {headerNavList
-            .find(item => item.href === changeNavHref)
+            .find(item => item.href === pathName)
             ?.data.map((list, index) => (
               <li key={index}>
-                <Link href="">{list}</Link>
+                <Link
+                  href={{
+                    pathname: "/webtoon",
+                    query:
+                      list === "요일전체" ? {} : { tab: convertWeekDay(list) },
+                  }}
+                >
+                  {list}
+                </Link>
               </li>
             ))}
         </ul>

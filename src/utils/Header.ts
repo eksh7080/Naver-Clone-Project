@@ -12,7 +12,36 @@ export const activeCheck = (path: string) => {
 };
 
 // 서브 네비게이션 표시 유무 체크 함수
-export const navCheck = () => {
+export const isActiveNavCheck = (list: string) => {
   const pathName = usePathname();
-  return pathName !== "/comic" ? true : false;
+};
+
+// 요일별 웹툰 네비게이션 탭 속성 리턴 함수
+export const convertWeekDay = (day: string) => {
+  switch (day) {
+    case "월": {
+      return "mon";
+    }
+    case "화": {
+      return "tue";
+    }
+    case "수": {
+      return "wed";
+    }
+    case "목": {
+      return "thu";
+    }
+    case "금": {
+      return "fri";
+    }
+    case "토": {
+      return "sat";
+    }
+    case "일": {
+      return "sun";
+    }
+    default: {
+      return "";
+    }
+  }
 };

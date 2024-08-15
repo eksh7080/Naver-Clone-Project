@@ -117,7 +117,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <GlobalNav setChangeNavHref={setChangeNavHref} />
-      <SubNav changeNavHref={changeNavHref} headerNavList={headerNavList} />
+      <SubNav headerNavList={headerNavList} />
     </HeaderContainer>
   );
 };
