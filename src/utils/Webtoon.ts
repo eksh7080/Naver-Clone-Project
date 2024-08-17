@@ -27,7 +27,7 @@ export const ConvertWeekId = (week: string) => {
       return "6690e6b74610b5edb1e19926";
       break;
     case "Sat":
-      return "토요일";
+      return "66c04ff1915b2fa57999aefa";
       break;
     case "Sun":
       return "일요일";

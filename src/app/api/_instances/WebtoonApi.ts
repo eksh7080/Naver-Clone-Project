@@ -1,3 +1,4 @@
+import { getNewWebtoonListParam } from "@interfaces/WebtoonList";
 import axios from "axios";
 
 const instance = axios.create({
@@ -5,17 +6,20 @@ const instance = axios.create({
 });
 
 export default {
-  // async getWebtoonList(param) {
-  //   const res = await instance({
-  //     url: `https://korea-webtoon-api.herokuapp.com?perPage=${param.perPage}&page=${param.page}&service=${param.service}&updateDay=${param.updateDay}`,
-  //     method: "GET",
-  //   });
-  //   return res;
-  // },
+  // 디비에 저장된 네이버 웹툰 리스트
   async getNaverWebtoonList() {
     const res = await instance({
       url: `http://localhost:3000/api/webtoonList`,
       method: "GET",
+    });
+    return res;
+  },
+  // 디비에 저장된 신작 웹툰 리스트
+  async getNaverNewWebtoonList(param: getNewWebtoonListParam) {
+    const res = await instance({
+      url: `http://localhost:3000/api/newWebtoon`,
+      method: "GET",
+      params: param,
     });
     return res;
   },

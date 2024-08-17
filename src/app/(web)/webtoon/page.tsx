@@ -20,7 +20,13 @@ import {
 } from "@utils/Webtoon";
 import axios from "axios";
 import dayjs from "dayjs";
-import { WebtoonListAll, WebtoonListContents } from "@interfaces/WebtoonList";
+import {
+  NewWebtoonList,
+  NewWebtoonListContents,
+  WebtoonListAll,
+  WebtoonListContents,
+  getNewWebtoonListParam,
+} from "@interfaces/WebtoonList";
 import { usePathname } from "next/navigation";
 
 const AllWebtoonContainer = styled.div`
@@ -53,7 +59,7 @@ const AllWebtoonContainer = styled.div`
         article.imageFrame {
           position: relative;
           width: 27.2rem;
-          height: 16.1rem;
+          height: 16.5rem;
           span.circleBadge {
             position: absolute;
             display: inline-flex;
@@ -213,6 +219,35 @@ const Webtoon = () => {
   // console.log(NaverWebtoonList, "웹툰 리스트");
   // console.log(NaverSavedList, "저장 웹툰 리스트");
 
+  // const param: getNewWebtoonListParam = {
+  //   // 66c07002cfc9e878a2c6bba0 요일전체
+  //   week: "undefined",
+  //   tag: "false",
+  //   sortByUpdate: "false",
+  // };
+  // const { data: getNewWebtoonList } = useQuery<NewWebtoonList>({
+  //   queryKey: ["getNewNaverWebtoons"],
+  //   queryFn: async () => {
+  //     const res = await WebtoonApi.getNaverNewWebtoonList(param);
+  //     return res.data;
+  //   },
+  // });
+
+  // const { data: NaverSavedNewList } = useQuery({
+  //   queryKey: ["saveNewNaverWebtoonList"],
+  //   queryFn: async () => {
+  //     const res = await axios.post(
+  //       "http://localhost:3000/api/newWebtoon",
+  //       getNewWebtoonList,
+  //     );
+  //     return res.data;
+  //   },
+  //   enabled: !!getNewWebtoonList,
+  // });
+
+  // console.log(getNewWebtoonList, "new");
+  // console.log(NaverSavedNewList, "save");
+
   const { data: getSavedWebtoonList } = useQuery<WebtoonListAll>({
     queryKey: ["getSavedNaverWebtoons"],
     queryFn: async () => {
@@ -230,36 +265,44 @@ const Webtoon = () => {
             <Link href={"#"}>신작웹툰 더보기 {">"}</Link>
           </div>
           <ul className="newWebtoonList">
-            {getSavedWebtoonList?.[ConvertTodayWeek(week)].map(
-              (item: WebtoonListContents, index) => (
-                <Fragment key={item._id}>
-                  {index < 4 && (
-                    <li>
-                      <article className="imageFrame">
-                        <span className="circleBadge">신작</span>
-                        <img
-                          src={item.thumbnailUrl}
-                          alt="썸네일"
-                          sizes="(max-width: 300px),(max-height: 170px)"
-                          width={"100%"}
-                          height={"100%"}
-                        />
-                      </article>
-                      <dl className="contentDescWrap">
-                        <dt className="title">{item.titleName}</dt>
-                        <dd className="author">{item.author}</dd>
-                        <dd className="desc">
-                          죽음 이후 환생한곳은 무림? 이곳은 어떻게 돼먹은
-                          곳이야!! 내가 이곳에서 잘 살아갈수 있을까? 적응하려는
-                          찰나 기인을 만나게 되는데 제자가 되면 모든걸 다 이룰
-                          수 있을거라고? 속는셈치고 한 번 믿어볼까
-                        </dd>
-                      </dl>
-                    </li>
-                  )}
+            {/* {getNewWebtoonList?.itemList.map(
+              (item: NewWebtoonListContents, index) => (
+                <Fragment key={item.titleId}>
+                  <li>
+                    <article
+                      className="imageFrame"
+                      style={{ background: item.bgColor }}
+                    >
+                      <span className="circleBadge">신작</span>
+                      <img
+                        src={item.backImage}
+                        alt="배경 이미지"
+                        sizes="(max-width: 300px),(max-height: 170px)"
+                        width={"100%"}
+                        height={"100%"}
+                      />
+                      <img
+                        src={item.frontImage}
+                        alt="프론트 이미지"
+                        sizes="(max-width: 300px),(max-height: 170px)"
+                        width={"100%"}
+                        height={"100%"}
+                      />
+                    </article>
+                    <dl className="contentDescWrap">
+                      <dt className="title">{item.titleName}</dt>
+                      <dd className="author">{item.author}</dd>
+                      <dd className="desc">
+                        죽음 이후 환생한곳은 무림? 이곳은 어떻게 돼먹은 곳이야!!
+                        내가 이곳에서 잘 살아갈수 있을까? 적응하려는 찰나 기인을
+                        만나게 되는데 제자가 되면 모든걸 다 이룰 수 있을거라고?
+                        속는셈치고 한 번 믿어볼까
+                      </dd>
+                    </dl>
+                  </li>
                 </Fragment>
               ),
-            )}
+            )} */}
           </ul>
         </div>
         <div className="AllWebtoonListWrap">

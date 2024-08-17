@@ -9,23 +9,35 @@ if (!cached) {
 }
 
 async function connectDB() {
-  if (cached.conn) {
-    return cached.conn;
-  }
-
-  if (!cached.promise) {
-    const opts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      bufferCommands: false,
-    };
-
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then(mongoose => {
-      return mongoose;
-    });
-  }
-  cached.conn = await cached.promise;
-  return cached.conn;
+  const opts = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    bufferCommands: false,
+  };
+  mongoose
+    .connect(MONGODB_URI, opts)
+    .then(() => {
+      console.log("몽고 DB 연결 성공");
+    })
+    .catch(err => console.log(err, "연결 실패"));
+  // if (cached.conn) {
+  //   return cached.conn;
+  // }
+  // if (!cached.promise) {
+  //   const opts = {
+  //     useNewUrlParser: true,
+  //     useUnifiedTopology: true,
+  //     bufferCommands: false,
+  //   };
+  //   cached.promise = mongoose
+  //     .connect(MONGODB_URI, opts)
+  //     .then(() => {
+  //       console.log("몽고 DB 연결 성공");
+  //     })
+  //     .catch(err => console.log(err, "연결 실패"));
+  // }
+  // cached.conn = await cached.promise;
+  // return cached.conn;
 }
 
 export default connectDB;

@@ -31,3 +31,39 @@ export interface WebtoonListContents {
   viewCount: number;
   _id: string;
 }
+
+export interface NewWebtoonList {
+  itemList: [NewWebtoonListContents];
+}
+
+interface Author {
+  id: number;
+  name: string;
+}
+
+export interface NewWebtoonListContents {
+  adult: boolean;
+  backImage: string;
+  bgColor: string;
+  bgImage: string;
+  bm: boolean;
+  displayAuthor: string;
+  frontImage: string;
+  new: boolean;
+  no: number;
+  novelOriginAuthors: Array<Author>;
+  painters: Array<Author>;
+  rating: boolean;
+  rest: boolean;
+  starScore: number;
+  subTitle: string;
+  title: string;
+  titleId: number;
+  up: boolean;
+}
+
+export interface getNewWebtoonListParam {
+  week: string;
+  tag: string;
+  sortByUpdate: string;
+}
