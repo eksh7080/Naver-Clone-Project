@@ -30,13 +30,14 @@ export const ConvertWeekId = (week: string) => {
       return "66c04ff1915b2fa57999aefa";
       break;
     case "Sun":
-      return "일요일";
+      return "66c1df0cd64ee266174ac471";
       break;
     default:
       break;
   }
 };
 
+// 요일 반환 함수
 export const ConvertTodayWeek = (week: string) => {
   switch (week) {
     case "Mon":
@@ -65,14 +66,44 @@ export const ConvertTodayWeek = (week: string) => {
   }
 };
 
-export const filterTodayNewWebtoon = (webtoonList: WebtoonListAll) => {
+export const ConvertNewWebtoonId = (week: string) => {
+  return "66c1eb29b41a3725ec17b4ee";
+
+  // switch (week) {
+  //   case "Mon":
+  //     return "";
+  //     break;
+  //   case "Tue":
+  //     return "";
+  //     break;
+  //   case "Wed":
+  //     return "";
+  //     break;
+  //   case "Thu":
+  //     return "";
+  //     break;
+  //   case "Fri":
+  //     return "";
+  //     break;
+  //   case "Sat":
+  //     return "";
+  //     break;
+  //   case "Sun":
+  //     return "";
+  //     break;
+  //   default:
+  //     return "66c07002cfc9e878a2c6bba0";
+  //     break;
+  // }
+};
+
+export const FilterTodayNewWebtoon = (webtoonList: WebtoonListAll) => {
   const today = new Date();
   const week = today.toString().split(" ")[0];
   if (webtoonList) {
     const filterList = webtoonList[ConvertTodayWeek(week)].filter(
       (list: WebtoonListContents) => list.new === true,
     );
-    console.log(filterList, " ts");
     return filterList;
   }
 };

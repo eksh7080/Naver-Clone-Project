@@ -56,8 +56,11 @@ const AllWebtoonContainer = styled.div`
       li {
         display: flex;
         flex-direction: column;
+        width: 272px;
         article.imageFrame {
           position: relative;
+          display: flex;
+          justify-content: center;
           width: 27.2rem;
           height: 16.5rem;
           span.circleBadge {
@@ -76,7 +79,12 @@ const AllWebtoonContainer = styled.div`
             border-radius: 50%;
           }
           img {
+            position: absolute;
             border-radius: 0.6rem;
+            bottom: 1px;
+            &.frontImg {
+              z-index: 20;
+            }
           }
           &::after {
             position: absolute;
@@ -109,7 +117,7 @@ const AllWebtoonContainer = styled.div`
             color: #666666;
             text-overflow: ellipsis;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
+            -webkit-line-clamp: 2;
             white-space: pre-wrap;
             overflow: hidden;
           }
@@ -220,7 +228,7 @@ const Webtoon = () => {
   // console.log(NaverSavedList, "저장 웹툰 리스트");
 
   // const param: getNewWebtoonListParam = {
-  //   // 66c07002cfc9e878a2c6bba0 요일전체
+  //   // 66c1eb29b41a3725ec17b4ee 요일전체
   //   week: "undefined",
   //   tag: "false",
   //   sortByUpdate: "false",
@@ -232,6 +240,8 @@ const Webtoon = () => {
   //     return res.data;
   //   },
   // });
+
+  // console.log(getNewWebtoonList, "new");
 
   // const { data: NaverSavedNewList } = useQuery({
   //   queryKey: ["saveNewNaverWebtoonList"],
@@ -245,8 +255,17 @@ const Webtoon = () => {
   //   enabled: !!getNewWebtoonList,
   // });
 
-  // console.log(getNewWebtoonList, "new");
   // console.log(NaverSavedNewList, "save");
+
+  const { data: getSavedNewWebtoonList } = useQuery<NewWebtoonList>({
+    queryKey: ["getSavedDbNewWebtoons"],
+    queryFn: async () => {
+      const res = await WebtoonApi.getDbNewWebtoonList();
+      return res.data;
+    },
+  });
+
+  console.log(getSavedNewWebtoonList);
 
   const { data: getSavedWebtoonList } = useQuery<WebtoonListAll>({
     queryKey: ["getSavedNaverWebtoons"],
@@ -265,44 +284,49 @@ const Webtoon = () => {
             <Link href={"#"}>신작웹툰 더보기 {">"}</Link>
           </div>
           <ul className="newWebtoonList">
-            {/* {getNewWebtoonList?.itemList.map(
+            {getSavedNewWebtoonList?.itemList.map(
               (item: NewWebtoonListContents, index) => (
-                <Fragment key={item.titleId}>
+                <Fragment key={item._id}>
                   <li>
                     <article
                       className="imageFrame"
-                      style={{ background: item.bgColor }}
+                      style={{ background: `#${item.bgColor}` }}
                     >
                       <span className="circleBadge">신작</span>
                       <img
-                        src={item.backImage}
-                        alt="배경 이미지"
+                        src={item.bgImage}
+                        alt="뒷 배경 이미지"
                         sizes="(max-width: 300px),(max-height: 170px)"
-                        width={"100%"}
-                        height={"100%"}
+                        width={"237px"}
+                        height={"164px"}
                       />
+                      {item.backImage !== "" && (
+                        <img
+                          src={item.backImage}
+                          alt="배경 이미지"
+                          sizes="(max-width: 300px),(max-height: 170px)"
+                          width={"207px"}
+                          height={"164px"}
+                        />
+                      )}
                       <img
+                        className="frontImg"
                         src={item.frontImage}
                         alt="프론트 이미지"
                         sizes="(max-width: 300px),(max-height: 170px)"
-                        width={"100%"}
-                        height={"100%"}
+                        width={"226px"}
+                        height={"181px"}
                       />
                     </article>
                     <dl className="contentDescWrap">
-                      <dt className="title">{item.titleName}</dt>
-                      <dd className="author">{item.author}</dd>
-                      <dd className="desc">
-                        죽음 이후 환생한곳은 무림? 이곳은 어떻게 돼먹은 곳이야!!
-                        내가 이곳에서 잘 살아갈수 있을까? 적응하려는 찰나 기인을
-                        만나게 되는데 제자가 되면 모든걸 다 이룰 수 있을거라고?
-                        속는셈치고 한 번 믿어볼까
-                      </dd>
+                      <dt className="title">{item.title}</dt>
+                      <dd className="author">{item.displayAuthor}</dd>
+                      <dd className="desc">{item.summary}</dd>
                     </dl>
                   </li>
                 </Fragment>
               ),
-            )} */}
+            )}
           </ul>
         </div>
         <div className="AllWebtoonListWrap">
@@ -405,6 +429,23 @@ const Webtoon = () => {
               <h3>토요웹툰</h3>
               <ul className="webtoonListContent">
                 {getSavedWebtoonList?.SATURDAY.map(
+                  (item: WebtoonListContents, index) => (
+                    <li key={item._id}>
+                      <article>
+                        <img src={item.thumbnailUrl} alt="썸네일" />
+                      </article>
+                      <div>
+                        <strong>{item.titleName}</strong>
+                      </div>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+            <div className="webtoonListColumn">
+              <h3>일요웹툰</h3>
+              <ul className="webtoonListContent">
+                {getSavedWebtoonList?.SUNDAY.map(
                   (item: WebtoonListContents, index) => (
                     <li key={item._id}>
                       <article>

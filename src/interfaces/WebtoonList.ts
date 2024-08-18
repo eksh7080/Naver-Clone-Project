@@ -56,7 +56,7 @@ export interface NewWebtoonListContents {
   rating: boolean;
   rest: boolean;
   starScore: number;
-  subTitle: string;
+  summary: string;
   title: string;
   titleId: number;
   up: boolean;

@@ -18,7 +18,7 @@ import mongoose from "mongoose";
  * rating: Boolean
  * rest: Boolean
  * starScore: float
- * subTitle: String
+ * summary: String
  * title: String
  * titleId: Number
  * up: Boolean
@@ -47,7 +47,7 @@ const NewWebtoonContents = new mongoose.Schema({
   rating: Boolean,
   rest: Boolean,
   starScore: Number,
-  subTitle: String,
+  summary: String,
   title: String,
   titleId: Number,
   up: Boolean,
