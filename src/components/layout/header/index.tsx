@@ -97,7 +97,9 @@ const HeaderContainer = styled.header`
         li {
           font-size: 1.5rem;
           font-weight: 600;
-          a {
+          &.focus {
+            border-bottom: 1px solid #00dc64;
+            color: #00dc64;
           }
         }
       }

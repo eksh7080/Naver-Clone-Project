@@ -5,10 +5,6 @@
  */
 import Image from "next/image";
 import Link from "next/link";
-import Thumnail01 from "@public/images/thumnail01.jpg";
-import Thumnail02 from "@public/images/thumnail02.jpg";
-import Thumnail03 from "@public/images/thumnail03.jpg";
-import Thumnail04 from "@public/images/thumnail04.jpg";
 import styled from "styled-components";
 import { Fragment, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -203,7 +199,6 @@ const Webtoon = () => {
   const pathName = usePathname();
   const today = new Date();
   const week = today.toString().split(" ")[0];
-
   // const { data: NaverWebtoonList } = useQuery({
   //   queryKey: ["getNaverWebtoonList"],
   //   queryFn: async () => {
@@ -257,23 +252,25 @@ const Webtoon = () => {
 
   // console.log(NaverSavedNewList, "save");
 
-  const { data: getSavedNewWebtoonList } = useQuery<NewWebtoonList>({
-    queryKey: ["getSavedDbNewWebtoons"],
-    queryFn: async () => {
-      const res = await WebtoonApi.getDbNewWebtoonList();
-      return res.data;
-    },
-  });
+  const { data: getSavedNewWebtoonList, isFetching: newWebtoonListFetcing } =
+    useQuery<NewWebtoonList>({
+      queryKey: ["getSavedDbNewWebtoons"],
+      queryFn: async () => {
+        const res = await WebtoonApi.getDbNewWebtoonList();
+        return res.data;
+      },
+    });
 
   console.log(getSavedNewWebtoonList);
 
-  const { data: getSavedWebtoonList } = useQuery<WebtoonListAll>({
-    queryKey: ["getSavedNaverWebtoons"],
-    queryFn: async () => {
-      const res = await WebtoonApi.getNaverWebtoonList();
-      return res.data;
-    },
-  });
+  const { data: getSavedWebtoonList, isFetching: webtoonListFetcing } =
+    useQuery<WebtoonListAll>({
+      queryKey: ["getSavedNaverWebtoons"],
+      queryFn: async () => {
+        const res = await WebtoonApi.getNaverWebtoonList();
+        return res.data;
+      },
+    });
 
   return (
     <>

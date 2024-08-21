@@ -6,7 +6,8 @@
 import { HeaderDynamicNavList } from "@interfaces/HeaderInterface";
 import { convertWeekDay, isActiveNavCheck } from "@utils/Header";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface IProps {
   headerNavList: HeaderDynamicNavList[];
@@ -14,6 +15,12 @@ interface IProps {
 
 const SubNav = ({ headerNavList }: IProps) => {
   const pathName = usePathname();
+  const searchParam = useSearchParams();
+  const [nav, setNav] = useState("");
+
+  const onFocusNav = (list: string) => {
+    setNav(list);
+  };
 
   return (
     <div className="subNav">
@@ -22,7 +29,11 @@ const SubNav = ({ headerNavList }: IProps) => {
           {headerNavList
             .find(item => item.href === pathName)
             ?.data.map((list, index) => (
-              <li key={index}>
+              <li
+                key={index}
+                onClick={() => onFocusNav(list)}
+                className={nav === list ? "focus" : ""}
+              >
                 <Link
                   href={{
                     pathname: "/webtoon",
