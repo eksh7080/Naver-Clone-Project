@@ -24,6 +24,7 @@ import {
   getNewWebtoonListParam,
 } from "@interfaces/WebtoonList";
 import { usePathname } from "next/navigation";
+import { NewWebtoon } from "@components/webtoon/NewWebtoonBox";
 
 const AllWebtoonContainer = styled.div`
   /* 신작 웹툰 */
@@ -275,7 +276,11 @@ const Webtoon = () => {
   return (
     <>
       <AllWebtoonContainer>
-        <div className="newWebtoonWrap">
+        <NewWebtoon>
+          <NewWebtoon.Title title={"이달의 신규 웹툰"} etc={true} />
+          <NewWebtoon.List itemList={getSavedNewWebtoonList?.itemList} />
+        </NewWebtoon>
+        {/* <div className="newWebtoonWrap">
           <div className="newWebtoonTitle">
             <h2>이달의 신규 웹툰</h2>
             <Link href={"#"}>신작웹툰 더보기 {">"}</Link>
@@ -325,7 +330,7 @@ const Webtoon = () => {
               ),
             )}
           </ul>
-        </div>
+        </div> */}
         <div className="AllWebtoonListWrap">
           <div className="webtoonListTitle">
             <h2>요일별 전체 웹툰</h2>

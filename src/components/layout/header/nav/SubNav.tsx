@@ -16,11 +16,13 @@ interface IProps {
 const SubNav = ({ headerNavList }: IProps) => {
   const pathName = usePathname();
   const searchParam = useSearchParams();
-  const [nav, setNav] = useState("");
+  const [nav, setNav] = useState("요일전체");
 
   const onFocusNav = (list: string) => {
     setNav(list);
   };
+
+  console.log(nav);
 
   return (
     <div className="subNav">
@@ -35,11 +37,7 @@ const SubNav = ({ headerNavList }: IProps) => {
                 className={nav === list ? "focus" : ""}
               >
                 <Link
-                  href={{
-                    pathname: "/webtoon",
-                    query:
-                      list === "요일전체" ? {} : { tab: convertWeekDay(list) },
-                  }}
+                  href={`/webtoon/${list === "요일전체" ? "" : convertWeekDay(list)}`}
                 >
                   {list}
                 </Link>

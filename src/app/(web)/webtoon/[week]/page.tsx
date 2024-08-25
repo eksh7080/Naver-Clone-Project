@@ -47,7 +47,8 @@ const Webtoon = () => {
             <Link href={"#"}>신작웹툰 더보기 {">"}</Link>
           </div>
           <ul className="newWebtoonList">
-            {getSavedWebtoonList?.[ConvertTodayWeek(week)].map(
+            <li>gd</li>
+            {/* {getSavedWebtoonList?.[ConvertTodayWeek(week)].map(
               (item: WebtoonListContents, index) => (
                 <Fragment key={item._id}>
                   {index < 4 && (
@@ -76,7 +77,7 @@ const Webtoon = () => {
                   )}
                 </Fragment>
               ),
-            )}
+            )} */}
           </ul>
         </div>
         <div className="AllWebtoonListWrap">
@@ -93,7 +94,8 @@ const Webtoon = () => {
             <div className="webtoonListColumn">
               <h3>월요웹툰</h3>
               <ul className="webtoonListContent">
-                {getSavedWebtoonList?.MONDAY.map(
+                <li>gd</li>
+                {/* {getSavedWebtoonList?.MONDAY.map(
                   (item: WebtoonListContents, index) => (
                     <li key={item._id}>
                       <article>
@@ -104,7 +106,7 @@ const Webtoon = () => {
                       </div>
                     </li>
                   ),
-                )}
+                )} */}
               </ul>
             </div>
           </div>
