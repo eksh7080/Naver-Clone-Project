@@ -1,3 +1,5 @@
+"use client";
+
 import NewList from "./new/NewList";
 import NewTitle from "./new/NewTitle";
 

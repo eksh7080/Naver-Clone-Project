@@ -8,12 +8,12 @@ export async function GET(req: NextRequest) {
   const week = today.toString().split(" ")[0];
   try {
     await connectDB();
-
     const todayId = ConvertWeekId(week);
     const findTodayWebtoon = await webtoonList.findById(todayId);
     const entriesObj = Object.entries(findTodayWebtoon.titleListMap);
     const fromEntriesObj = Object.fromEntries(entriesObj);
 
+    console.log('111111')
     return NextResponse.json(fromEntriesObj);
   } catch (error) {
     return NextResponse.json(error);

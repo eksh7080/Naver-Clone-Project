@@ -1,16 +1,17 @@
 "use client";
-import { NewWebtoonListContents } from "@interfaces/WebtoonList";
 import { Fragment } from "react";
+import Link from "next/link";
+import { NewWebtoonList, NewWebtoonListContents } from "@interfaces/WebtoonList";
 
-interface IProps {
-  itemList: NewWebtoonListContents;
-}
-
-const NewList = ({ itemList }: IProps) => {
+const NewWeb = ({ newWebtoonList }: NewWebtoonList) => {
   return (
-    <ul className="newWebtoonList">
-      {itemList &&
-        itemList.map((item: NewWebtoonListContents, index) => (
+    <div className="newWebtoonWrap">
+      <div className="newWebtoonTitle">
+        <h2>이달의 신규 웹툰</h2>
+        <Link href={"#"}>신작웹툰 더보기 {">"}</Link>
+      </div>
+      <ul className="newWebtoonList">
+        {newWebtoonList.itemList.map((item: NewWebtoonListContents, index) => (
           <Fragment key={item._id}>
             <li>
               <article
@@ -51,8 +52,9 @@ const NewList = ({ itemList }: IProps) => {
             </li>
           </Fragment>
         ))}
-    </ul>
+      </ul>
+    </div>
   );
 };
 
-export default NewList;
+export default NewWeb;

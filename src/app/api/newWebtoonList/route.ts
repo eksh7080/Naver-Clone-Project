@@ -12,6 +12,8 @@ export async function GET(req: NextRequest) {
     const todayId = ConvertNewWebtoonId(week);
     const findTodayNewWebtoon = await newWebtoonList.findById(todayId);
 
+    console.log(" kskxkskxkskxkskxksk");
+
     return NextResponse.json(findTodayNewWebtoon);
   } catch (error) {
     return NextResponse.json(error);

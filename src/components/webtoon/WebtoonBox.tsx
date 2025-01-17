@@ -1,12 +1,11 @@
+// const WebtoonBox = () => {
+//     return (
 
-const WebtoonBox = () => {
-    return (
+//     )
+// }
 
-    )
-}
+// export const Webtoon = Object.assign(WebtoonBox, {
+//     Title:
+//     List:
 
-export const Webtoon = Object.assign(WebtoonBox, {
-    Title:
-    List: 
-
-})
+// })

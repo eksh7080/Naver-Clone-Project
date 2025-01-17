@@ -1,23 +1,27 @@
 "use client";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
 
-export default function ReactQueryProviders({
-  children,
-}: React.PropsWithChildren) {
+function ReactQueryProvider({ children }: React.PropsWithChildren) {
   const [client] = useState(
     new QueryClient({
       defaultOptions: {
         queries: {
-          retry: 0,
-          refetchInterval: 0,
-          refetchOnReconnect: false,
           refetchOnWindowFocus: false,
-          useErrorBoundary: true,
+          refetchOnMount: false,
+          retry: 1,
         },
       },
     }),
   );
 
-  return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={client}>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
 }
+
+export { ReactQueryProvider };
